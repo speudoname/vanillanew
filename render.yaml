@@ -25,4 +25,4 @@ services:
 databases:
   - name: vanilla-todo-db
     databaseName: todos
-    user: postgres
+    user: vanilla_user
