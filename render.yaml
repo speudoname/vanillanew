@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: vanilla-todo-backend
+    env: node
+    buildCommand: cd VB && npm install
+    startCommand: node index.js
+    envVars:
+      - key: NODE_VERSION
+        value: 18.x
+      - key: DATABASE_URL
+        fromDatabase:
+          name: vanilla-todo-db
+          property: connectionString
+
+  - type: static_site
+    name: vanilla-todo-frontend
+    staticPublishPath: ./VF
+    envVars:
+      - key: VITE_API_URL
+        value: https://vanilla-todo-backend.onrender.com
+
+databases:
+  - name: vanilla-todo-db
+    databaseName: todos
+    user: postgres
