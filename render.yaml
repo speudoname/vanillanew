@@ -12,11 +12,14 @@ services:
           name: vanilla-todo-db
           property: connectionString
 
-  - type: static_site
+  - type: web
     name: vanilla-todo-frontend
+    env: static
+    buildCommand: |
+      echo 'Frontend will be served from the VF directory'
     staticPublishPath: ./VF
     envVars:
-      - key: VITE_API_URL
+      - key: API_URL
         value: https://vanilla-todo-backend.onrender.com
 
 databases:
